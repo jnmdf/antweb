@@ -1,0 +1,14 @@
+# 忽略所有文件（这是白名单的基础）
+*
+# 白名单目录和文件
+!/src/
+!/src/**
+!/.cargo/
+!/.cargo/**
+# 依赖
+!/Cargo.toml
+!/Cargo.lock
+# 文档
+!/README.md
+# .gitignore
+!/.gitignore
