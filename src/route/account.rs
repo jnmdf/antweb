@@ -8,22 +8,12 @@ use axum::{
     extract::Path,
     routing::{delete, get, post, put},
 };
-use my_macros::SeaModel;
+use r#macro::SeaModel;
 use sea_query::{Expr, ExprTrait, Query};
 use serde::{Deserialize, Serialize};
 use serde_json::{Value, json};
 use sqlx::FromRow;
-#[derive(Deserialize)]
-pub struct CreateUserReq {
-    pub nickname: String,
-    pub email: String,
-}
-
-#[derive(Deserialize)]
-pub struct UpdateUserReq {
-    pub nickname: Option<String>,
-    pub email: Option<String>,
-}
+use tracing::error;
 pub fn router() -> Router {
     Router::new()
         .route("/user/{id}", get(get_user))
@@ -109,5 +99,6 @@ async fn delete_user(Path(id): Path<u64>) -> AppResult<Json<Value>> {
         .to_sqlx();
     let query = execute!(q);
     let reply = query.execute(db().await?).await?;
+    error!("right here");
     Ok(Json(json!({"data": reply.rows_affected()})))
 }
