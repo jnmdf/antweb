@@ -5,8 +5,8 @@
 !/src/**
 !/.cargo/
 !/.cargo/**
-!/my_macros/
-!/my_macros/**
+!/macro/
+!/macro/**
 # 依赖
 !/Cargo.toml
 !/Cargo.lock
